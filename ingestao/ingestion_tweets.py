@@ -16,7 +16,7 @@ spark = SparkSession.builder.getOrCreate()
 
 # COMMAND ----------
 
-# MAGIC %run /Users/alexandresantos1000@gmail.com/desafio_serasa/functions/to_datetime
+# MAGIC %run /desafio_serasa/functions/to_datetime
 
 # COMMAND ----------
 
@@ -61,7 +61,7 @@ tweets_dict = tweets_dict.fromkeys(['created_at', 'id', 'id_str', 'text', 'metad
 # DBTITLE 1,Armazenando os tweets retornados
 #query_search = '#bitcoin' + '#criptomoedas' + '#eth' + '#covid19' + ' -filter:retweets'
 query_search = '#covid19' + ' -filter:retweets'
-cursor_tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(50000)
+cursor_tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(1000)
 
 # COMMAND ----------
 
