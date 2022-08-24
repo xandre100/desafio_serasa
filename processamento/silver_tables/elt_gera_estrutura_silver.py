@@ -181,10 +181,6 @@ spark = SparkSession.builder.getOrCreate()
 
 # COMMAND ----------
 
-dbutils.fs.rm('dbfs:/silver/desafio_serasa/tweets', True)
-
-# COMMAND ----------
-
 # MAGIC %sql 
 # MAGIC 
 # MAGIC DROP TABLE IF EXISTS desafio_serasa.tweets;
