@@ -43,7 +43,7 @@ public_tweets = api.home_timeline()
 # DBTITLE 1,Entendendo as chaves dos tweets retornados
 # Verificando as localizações disponíveis para o trends
 query_search = '#bitcoin' + '#criptomoedas' + '#eth' + ' -filter:retweets'
-tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(200000)
+tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(5)
 placeKeys = None
 for tweet in tweets:
   display(tweet._json)
