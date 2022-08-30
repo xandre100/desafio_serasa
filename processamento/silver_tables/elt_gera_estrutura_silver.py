@@ -21,8 +21,6 @@ spark = SparkSession.builder.getOrCreate()
 
 # MAGIC %sql 
 # MAGIC 
-# MAGIC DROP TABLE IF EXISTS desafio_serasa.source;
-# MAGIC 
 # MAGIC CREATE TABLE IF NOT EXISTS desafio_serasa.source
 # MAGIC (
 # MAGIC   source string, 
@@ -74,8 +72,6 @@ spark = SparkSession.builder.getOrCreate()
 
 # MAGIC %sql 
 # MAGIC 
-# MAGIC DROP TABLE IF EXISTS desafio_serasa.periodo;
-# MAGIC 
 # MAGIC CREATE TABLE IF NOT EXISTS desafio_serasa.periodo
 # MAGIC (
 # MAGIC   id_periodo string, 
@@ -95,11 +91,11 @@ spark = SparkSession.builder.getOrCreate()
 # MAGIC create or replace temp view vw_periodo
 # MAGIC as
 # MAGIC select distinct 
-# MAGIC         date_format(u_created_at, 'yyyyMMdd') as id_periodo, 
-# MAGIC         u_created_at as date, 
-# MAGIC         year(u_created_at) as year, 
-# MAGIC         month(u_created_at) as month, 
-# MAGIC         day(u_created_at) as day
+# MAGIC         date_format(created_at, 'yyyyMMdd') as id_periodo, 
+# MAGIC         created_at as date, 
+# MAGIC         year(created_at) as year, 
+# MAGIC         month(created_at) as month, 
+# MAGIC         day(created_at) as day
 # MAGIC   from desafio_serasa.tweets_recentes
 
 # COMMAND ----------
@@ -122,9 +118,9 @@ spark = SparkSession.builder.getOrCreate()
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC 
 # MAGIC select *
 # MAGIC   from desafio_serasa.periodo
+# MAGIC order by day;
 
 # COMMAND ----------
 
@@ -134,8 +130,6 @@ spark = SparkSession.builder.getOrCreate()
 # COMMAND ----------
 
 # MAGIC %sql 
-# MAGIC 
-# MAGIC DROP TABLE IF EXISTS desafio_serasa.screens;
 # MAGIC 
 # MAGIC CREATE TABLE IF NOT EXISTS desafio_serasa.screens
 # MAGIC (
@@ -181,9 +175,11 @@ spark = SparkSession.builder.getOrCreate()
 
 # COMMAND ----------
 
+#dbutils.fs.rm('dbfs:/silver/desafio_serasa/tweets', True)
+
+# COMMAND ----------
+
 # MAGIC %sql 
-# MAGIC 
-# MAGIC DROP TABLE IF EXISTS desafio_serasa.tweets;
 # MAGIC 
 # MAGIC CREATE TABLE IF NOT EXISTS desafio_serasa.tweets
 # MAGIC (

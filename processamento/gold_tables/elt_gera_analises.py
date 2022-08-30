@@ -20,6 +20,14 @@ spark = SparkSession.builder.getOrCreate()
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC 
+# MAGIC REFRESH TABLE fat_tweets_by_date;
+# MAGIC REFRESH TABLE fat_source;
+# MAGIC REFRESH TABLE fat_tweets_by_screen_name;
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC 
 # MAGIC ##TWEETS POR SOURCE

@@ -42,13 +42,13 @@ public_tweets = api.home_timeline()
 
 # DBTITLE 1,Entendendo as chaves dos tweets retornados
 # Verificando as localizações disponíveis para o trends
-query_search = '#bitcoin' + '#criptomoedas' + '#eth' + ' -filter:retweets'
-tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(5)
-placeKeys = None
-for tweet in tweets:
-  display(tweet._json)
-  
-tkeys = tweet._json.keys()  
+###query_search = '#bitcoin' + '#criptomoedas' + '#eth' + ' -filter:retweets'
+###tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(5)
+###placeKeys = None
+###for tweet in tweets:
+###  display(tweet._json)
+###  
+###tkeys = tweet._json.keys()  
 
 # COMMAND ----------
 
@@ -61,7 +61,7 @@ tweets_dict = tweets_dict.fromkeys(['created_at', 'id', 'id_str', 'text', 'metad
 # DBTITLE 1,Armazenando os tweets retornados
 #query_search = '#bitcoin' + '#criptomoedas' + '#eth' + '#covid19' + ' -filter:retweets'
 query_search = '#covid19' + ' -filter:retweets'
-cursor_tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(1000)
+cursor_tweets = tweepy.Cursor(api.search_tweets,q=query_search).items(900)
 
 # COMMAND ----------
 
@@ -124,6 +124,13 @@ schema = StructType([
 ])
 
 vw_tweets_recentes = sqlContext.createDataFrame(dfTweets,schema).createOrReplaceTempView('vw_tweets_recentes')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC 
+# MAGIC select *
+# MAGIC   from vw_tweets_recentes
 
 # COMMAND ----------
 
