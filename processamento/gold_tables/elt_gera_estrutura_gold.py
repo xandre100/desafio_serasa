@@ -69,6 +69,7 @@ spark.sql("""
 # MAGIC 
 # MAGIC select * 
 # MAGIC   from dm_desafio_serasa.dim_periodo
+# MAGIC order by year,month, day
 
 # COMMAND ----------
 
@@ -190,6 +191,13 @@ spark.sql("""
 
 display(spark.sql("""select *
   from dm_desafio_serasa.fat_tweets_by_date"""))
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC 
+# MAGIC select *
+# MAGIC   from dm_desafio_serasa.fat_tweets_by_screen_name
 
 # COMMAND ----------
 
